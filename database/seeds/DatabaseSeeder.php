@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Car;
+use App\Models\Driver;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -11,6 +13,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        $this->call(CarStatusesTableSeeder::class);
+        $this->call(CarTypesTableSeeder::class);
+        $this->call(UsersTableSeeder::class);
+        factory(Driver::class, 5)->create();
+        factory(Car::class, 10)->create();
     }
 }
