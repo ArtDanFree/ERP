@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Car;
-use App\Models\Driver;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,8 +15,11 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(CarStatusesTableSeeder::class);
         $this->call(CarTypesTableSeeder::class);
-        $this->call(UsersTableSeeder::class);
-        factory(Driver::class, 5)->create();
+        $this->call(LaratrustSeeder::class);
+        factory(User::class, 5)->create()
+            ->each(function (\App\Models\User $user) {
+                $user->roles()->sync(['id'=> 2]);
+            });;
         factory(Car::class, 10)->create();
     }
 }

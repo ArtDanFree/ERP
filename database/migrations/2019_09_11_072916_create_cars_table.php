@@ -21,7 +21,7 @@ class CreateCarsTable extends Migration
             $table->bigInteger('type_id')->unsigned()->index();
             $table->foreign('type_id')->references('id')->on('car_types');
             $table->bigInteger('driver_id')->unsigned()->index()->nullable();
-            $table->foreign('driver_id')->references('id')->on('drivers');
+            $table->foreign('driver_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
