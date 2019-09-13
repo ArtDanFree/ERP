@@ -11,10 +11,8 @@ import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
 
-import VueSweetalert2 from 'vue-sweetalert2';
-Vue.use(VueSweetalert2);
-
 const routes = [
+    { path: '/', component: require('./components/Home').default },
     { path: '/cars', component: require('./components/Cars/Index').default },
     { path: '/car/:id/edit', component: require('./components/Cars/Edit').default, props: true },
     { path: '/car/create', component: require('./components/Cars/Create').default },

@@ -32,11 +32,15 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+                    <div>
                         @permission('read-cars')
-                        <router-link tag="li" to="/cars"><a>Транспорт</a></router-link>
+                        <a  href="/home#/cars">Транспорт</a>
                         @endpermission
-                    </ul>
+                        @permission('read-drivers')
+                        <a  href="{{ route('driver.index') }}">Водители</a>
+                        @endpermission
+                    </div>
+
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -78,5 +82,6 @@
             @yield('content')
         </main>
     </div>
+    @yield('scripts')
 </body>
 </html>

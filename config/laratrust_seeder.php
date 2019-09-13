@@ -3,7 +3,7 @@
 return [
     'role_structure' => [
         'admin' => [
-            'users' => 'c,r,u,d',
+            'drivers' => 'c,r,u,d',
             'cars' => 'c,r,u,d',
             'car_types' => 'c,r,u,d',
             'car_statuses' => 'c,r,u,d',

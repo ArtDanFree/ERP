@@ -28,6 +28,7 @@
                         <label for="driver_id">Водитель</label>
                         <select class="form-control" id="driver_id" v-model="form.driver_id">
                             <option v-if="data.car.driver !== null" :value="data.car.driver.id" selected>{{ data.car.driver.name }}</option>
+                            <option v-if="data.car.driver !== null" value="" selected>Убрать водителя</option>
                             <option v-for="driver in data.drivers" :value="driver.id">
                                 {{ driver.name }}
                             </option>
@@ -78,7 +79,8 @@
                 let app = this;
                 axios.put('api/car/' + app.id, app.form)
                     .then(function (response) {
-                        app.$swal({
+                        app.getCar(app.id);
+                        window.Swal.fire({
                             position: 'top-end',
                             text: response.data.message,
                             type: 'success',

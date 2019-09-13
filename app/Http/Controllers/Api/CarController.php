@@ -27,7 +27,7 @@ class CarController extends Controller
         abort_unless(LaratrustFacade::can('create-cars'), 403);
         $types = CarType::all();
         $statuses = CarStatuses::all();
-        $drivers = User::freeDriver()->get();
+        $drivers = User::getFreeDriver();
 
         return compact('types', 'statuses', 'drivers');
     }
@@ -47,7 +47,7 @@ class CarController extends Controller
         $car = Car::with(['driver', 'type', 'status'])->find($car->id);
         $types = CarType::all();
         $statuses = CarStatuses::all();
-        $drivers = User::freeDriver()->get();
+        $drivers = User::getFreeDriver();
 
         return compact('car', 'types', 'statuses', 'drivers');
     }
@@ -55,6 +55,7 @@ class CarController extends Controller
     public function update(Request $request, Car $car)
     {
         abort_unless(LaratrustFacade::can('update-cars'), 403);
+        $car->changeDriver($car, $request->driver_id);
         $car->update($request->all());
 
         return response(['message' => 'Данные успешно обновлены']);

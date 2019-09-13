@@ -5960,7 +5960,7 @@ svgo@^1.0.0:
     unquote "~1.1.1"
     util.promisify "~1.0.0"
 
-sweetalert2@8.x:
+sweetalert2@8.x, sweetalert2@^8.17.1:
   version "8.17.1"
   resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-8.17.1.tgz#0c691ce4181661182ad4bc5312aa25e44479a650"
 

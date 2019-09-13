@@ -92,7 +92,7 @@
                 axios.post('api/car', app.form)
                     .then(function (response) {
                         app.$router.replace({path: "/car/"+ response.data.id +"/edit"});
-                        app.$swal({
+                        window.Swal.fire({
                             position: 'top-end',
                             text: response.data.message,
                             type: 'success',

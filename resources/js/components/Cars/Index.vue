@@ -1,9 +1,9 @@
 <template>
-    <div v-if="cars.length" class="card">
+    <div class="card">
         <div class="card-header">Транспорт
             <router-link to="car/create"><button type="button" class="btn btn-outline-info">Добавить</button></router-link>
         </div>
-        <table class="table">
+        <table class="table" v-if="cars.length">
             <thead>
             <tr>
                 <th scope="col">Имя</th>
@@ -51,7 +51,7 @@
             },
             destroy: function (id) {
                 let app = this;
-                app.$swal({
+                window.Swal.fire({
                     title: "Удалить транспорт ?",
                     type: "warning",
                     showCancelButton: true,
@@ -64,7 +64,7 @@
                             axios.delete('api/car/' + id)
                                 .then(function (response) {
                                     app.getCars();
-                                    app.$swal({
+                                    window.Swal.fire({
                                         position: 'top-end',
                                         text: response.data.message,
                                         type: 'success',

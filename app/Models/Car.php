@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Car extends Model
@@ -23,6 +24,24 @@ class Car extends Model
     public function status()
     {
         return $this->belongsTo(CarStatuses::class);
+    }
+
+    public function scopeGetFreeCars(Builder $builder)
+    {
+        return $builder->doesntHave('driver')->orderByDesc('id');
+    }
+
+    public function changeDriver(Car $car,  $id = null)
+    {
+        // удаление водителя
+        if (filled($car->driver)) {
+            $car->driver()->dissociate()->save();
+        }
+        // присвоение водителя
+        if (filled($id)) {
+            $driver = User::find($id);
+            $car->driver()->associate($driver);
+        }
     }
 
 }
