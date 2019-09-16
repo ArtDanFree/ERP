@@ -6,7 +6,6 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">Водители
-                        <a href="{{ route('driver.create') }}" type="button" class="btn btn-outline-info">Добавить</a>
                     </div>
                     <table class="table">
                         <thead>
