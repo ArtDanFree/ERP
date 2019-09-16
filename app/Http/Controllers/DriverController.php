@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RegisterRequest;
 use App\Models\Car;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -19,17 +20,18 @@ class DriverController extends Controller
 
     public function create()
     {
-        //
+        abort_unless(LaratrustFacade::can('create-drivers'), 403);
+
+        return view('drivers.create');
     }
 
-    public function store(Request $request)
+    public function store(RegisterRequest $request)
     {
-        //
-    }
+        abort_unless(LaratrustFacade::can('create-drivers'), 403);
+        $driver = User::create($request->all());
+        $driver->roles()->sync(2);
 
-    public function show($id)
-    {
-        //
+        return redirect()->route('driver.edit', $driver);
     }
 
     public function edit(User $driver)
@@ -43,6 +45,7 @@ class DriverController extends Controller
 
     public function update(Request $request, User $driver)
     {
+        abort_unless(LaratrustFacade::can('update-drivers'), 403);
         $driver->changeCar($driver, $request->car_id);
 
         return back();

@@ -15,6 +15,6 @@ use Illuminate\Http\Request;
 
 
 Route::group(['middleware' => 'auth:api', 'namespace' => 'Api'] ,function () {
-    Route::resource('car', 'CarController');
+    Route::resource('car', 'CarController')->except(['show']);
     Route::get('user', 'UserController');
 });
