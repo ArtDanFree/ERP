@@ -35,6 +35,8 @@
                                         @if(filled($driver->car))
                                         <option value="">Удалить машину</option>
                                         <option value="{{ $driver->car->id }}" selected>{{ $driver->car->name }}</option>
+                                            @else
+                                            <option value="" selected></option>
                                         @endif
                                         @foreach($cars as $car)
                                             <option value="{{ $car->id }}">{{ $car->name }}</option>
