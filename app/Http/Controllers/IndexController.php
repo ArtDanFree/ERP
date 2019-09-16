@@ -10,6 +10,6 @@ class IndexController extends Controller
     {
         $cars = Car::all();
 
-        return view('index', compact('cars', 'freeDrivers'));
+        return view('index', compact('cars'));
     }
 }
