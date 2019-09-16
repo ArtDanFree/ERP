@@ -51,6 +51,7 @@ class DriverController extends Controller
     public function destroy(User $driver)
     {
         abort_unless(LaratrustFacade::can('delete-drivers'), 403);
+        $driver->dissociateCar($driver);
         $driver->delete();
 
         return back();

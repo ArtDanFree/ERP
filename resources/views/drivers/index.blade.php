@@ -48,7 +48,7 @@
     <script>
         function deleteDriver(id) {
             Swal.fire({
-                title: "Удалить транспорт ?",
+                title: "Удалить водителя ?",
                 type: "warning",
                 showCancelButton: true,
                 cancelButtonText: 'Отмена',

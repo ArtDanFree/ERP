@@ -17,7 +17,7 @@ class CarController extends Controller
     public function index()
     {
         abort_unless(LaratrustFacade::can('read-cars'), 403);
-        $cars = Car::with(['driver', 'type', 'status'])->get();
+        $cars = Car::with(['driver', 'type', 'status'])->orderByDesc('id')->get();
 
         return CarResource::collection($cars);
     }

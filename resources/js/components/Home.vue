@@ -1,5 +1,5 @@
 <template>
-    <div class="card">
+    <div class="card" v-if="user">
         <div class="card-header">Домашняя страница
         </div>
         <div class="border-bottom p-4">
@@ -28,7 +28,7 @@
         name: "Home",
         data: function () {
             return {
-                user: Object
+                user: null
             }
         },
         mounted() {
@@ -36,7 +36,6 @@
             axios.get('api/user')
                 .then(function (response) {
                     app.user = response.data;
-                    console.log(app.user)
                 });
         }
     }

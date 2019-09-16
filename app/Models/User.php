@@ -28,7 +28,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token', 'email_verified_at', 'email'
+        'password', 'remember_token', 'email_verified_at', 'email',
     ];
 
     /**
@@ -55,16 +55,19 @@ class User extends Authenticatable
         return $this->hasOne(Car::class, 'driver_id');
     }
 
-    public function changeCar(User $driver,  $id = null)
+    public function changeCar(User $driver, $id = null)
     {
-        // удаление машины
-        if (filled($driver->car)) {
-            $driver->car->driver()->dissociate()->save();
-        }
-        // присвоение машины
+        $this->dissociateCar($driver);
         if (filled($id)) {
             $car = Car::find($id);
             $driver->car()->save($car);
+        }
+    }
+
+    public function dissociateCar(User $driver)
+    {
+        if (filled($driver->car)) {
+            $driver->car->driver()->dissociate()->save();
         }
     }
 }
